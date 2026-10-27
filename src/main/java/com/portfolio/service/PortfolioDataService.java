@@ -22,7 +22,7 @@ public class PortfolioDataService {
     @Value("${portfolio.owner.role:Software Developer Intern @ CodeMetric}")
     private String currentRole;
 
-    @Value("${portfolio.owner.email:sahilnikam005@gmail.com}")
+    @Value("${portfolio.owner.email:sahilnikam107@gmail.com}")
     private String email;
 
     @Value("${portfolio.owner.github:https://github.com/SahilSatishNikam}")

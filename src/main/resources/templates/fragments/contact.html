@@ -1,143 +1,164 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head><title>Contact Fragment</title></head>
+
+<head>
+  <title>Contact Fragment</title>
+</head>
+
 <body>
-<section id="contact" class="section" th:fragment="contact" aria-label="Contact Section">
-  <div class="container">
-    <div class="section-header reveal-init">
-      <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; flex-wrap: wrap; gap: 12px;">
-        <span class="section-label">07 / GET IN TOUCH</span>
-        <a href="/contact" class="section-mode-link" title="Open dedicated page view">
-          <span>Dedicated Page</span>
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-        </a>
-      </div>
-      <h2 class="section-title">LET'S CONNECT AND <span class="text-gradient">BUILD SOMETHING GREAT.</span></h2>
-      <p class="section-subtitle">
-        Have an inquiry, project idea, or discussion about software development? Send a message directly through the secure Spring Boot backend.
-      </p>
-    </div>
-
-    <div class="contact-grid">
-      <!-- Left: Channel Info & Profiles -->
-      <div class="contact-info-panel reveal-init">
-        <div>
-          <h3 style="font-size: 1.5rem; margin-bottom: var(--space-sm);">Let's Start a Conversation</h3>
-          <p style="color: var(--text-secondary); line-height: 1.7;">
-            Whether you want to discuss backend architecture, practical software engineering, or technical collaboration, I look forward to connecting with fellow engineers and teams.
-          </p>
-        </div>
-
-        <div class="contact-channel-list">
-          <!-- Direct Email -->
-          <a th:href="'mailto:' + ${profile.email}" class="contact-channel-item" aria-label="Send Email">
-            <div class="channel-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="2" y="4" width="20" height="16" rx="2"></rect>
-                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L1 7"></path>
-              </svg>
-            </div>
-            <div class="channel-details">
-              <span class="channel-title">Direct Email</span>
-              <span class="channel-val" th:text="${profile.email}">sahilnikam005@gmail.com</span>
-            </div>
-          </a>
-
-          <!-- GitHub -->
-          <a th:href="${profile.github}" target="_blank" rel="noopener noreferrer" class="contact-channel-item" aria-label="GitHub Profile">
-            <div class="channel-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
-                <path d="M9 18c-4.51 2-5-2-7-2"></path>
-              </svg>
-            </div>
-            <div class="channel-details">
-              <span class="channel-title">GitHub</span>
-              <span class="channel-val">SahilSatishNikam</span>
-            </div>
-          </a>
-
-          <!-- LinkedIn -->
-          <a th:href="${profile.linkedin}" target="_blank" rel="noopener noreferrer" class="contact-channel-item" aria-label="LinkedIn Profile">
-            <div class="channel-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                <rect x="2" y="9" width="4" height="12"></rect>
-                <circle cx="4" cy="4" r="2"></circle>
-              </svg>
-            </div>
-            <div class="channel-details">
-              <span class="channel-title">LinkedIn</span>
-              <span class="channel-val">sahil-nikam</span>
-            </div>
-          </a>
-
-          <!-- Organization Badge -->
-          <div class="contact-channel-item">
-            <div class="channel-icon" style="background: rgba(139, 92, 246, 0.1); color: var(--accent-violet);">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                <circle cx="12" cy="10" r="3"></circle>
-              </svg>
-            </div>
-            <div class="channel-details">
-              <span class="channel-title">Current Role</span>
-              <span class="channel-val">CodeMetric • India</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Right: Working Contact Form -->
-      <div class="glass-card contact-form-card reveal-init">
-        <form id="contact-form" class="contact-form" novalidate>
-          <!-- Honeypot Bot Trap (invisible to humans) -->
-          <div class="hp-field" aria-hidden="true">
-            <label for="contact-company-hp">Company URL</label>
-            <input type="text" id="contact-company-hp" name="companyUrl" tabindex="-1" autocomplete="off">
-          </div>
-
-          <!-- Name -->
-          <div class="form-group">
-            <label for="contact-name" class="form-label">Your Name *</label>
-            <input type="text" id="contact-name" class="form-input" placeholder="e.g. Alex Morgan" required autocomplete="name">
-            <span id="contact-name-error" class="form-field-error" aria-live="polite"></span>
-          </div>
-
-          <!-- Email -->
-          <div class="form-group">
-            <label for="contact-email" class="form-label">Email Address *</label>
-            <input type="email" id="contact-email" class="form-input" placeholder="alex@company.com" required autocomplete="email">
-            <span id="contact-email-error" class="form-field-error" aria-live="polite"></span>
-          </div>
-
-          <!-- Subject -->
-          <div class="form-group">
-            <label for="contact-subject" class="form-label">Subject *</label>
-            <input type="text" id="contact-subject" class="form-input" placeholder="Engineering opportunity or technical discussion" required>
-            <span id="contact-subject-error" class="form-field-error" aria-live="polite"></span>
-          </div>
-
-          <!-- Message -->
-          <div class="form-group">
-            <label for="contact-message" class="form-label">Message *</label>
-            <textarea id="contact-message" class="form-textarea" placeholder="Hello Sahil, I saw your portfolio and would like to connect regarding..." required></textarea>
-            <span id="contact-message-error" class="form-field-error" aria-live="polite"></span>
-          </div>
-
-          <!-- Submit Button -->
-          <button type="submit" id="contact-submit-btn" class="btn btn-primary btn-submit">
-            <span class="spinner" aria-hidden="true"></span>
-            <span class="btn-text">SEND MESSAGE</span>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-              <line x1="22" y1="2" x2="11" y2="13"></line>
-              <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+  <section id="contact" class="section" th:fragment="contact" aria-label="Contact Section">
+    <div class="container">
+      <div class="section-header reveal-init">
+        <div
+          style="display: flex; justify-content: space-between; align-items: center; width: 100%; flex-wrap: wrap; gap: 12px;">
+          <span class="section-label">07 / GET IN TOUCH</span>
+          <a href="/contact" class="section-mode-link" title="Open dedicated page view">
+            <span>Dedicated Page</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <line x1="10" y1="14" x2="21" y2="3"></line>
             </svg>
-          </button>
-        </form>
+          </a>
+        </div>
+        <h2 class="section-title">LET'S CONNECT AND <span class="text-gradient">BUILD SOMETHING GREAT.</span></h2>
+        <p class="section-subtitle">
+          Have an inquiry, project idea, or discussion about software development? Send a message directly through the
+          secure Spring Boot backend.
+        </p>
+      </div>
+
+      <div class="contact-grid">
+        <!-- Left: Channel Info & Profiles -->
+        <div class="contact-info-panel reveal-init">
+          <div>
+            <h3 style="font-size: 1.5rem; margin-bottom: var(--space-sm);">Let's Start a Conversation</h3>
+            <p style="color: var(--text-secondary); line-height: 1.7;">
+              Whether you want to discuss backend architecture, practical software engineering, or technical
+              collaboration, I look forward to connecting with fellow engineers and teams.
+            </p>
+          </div>
+
+          <div class="contact-channel-list">
+            <!-- Direct Email -->
+            <a th:href="'mailto:' + ${profile.email}" class="contact-channel-item" aria-label="Send Email">
+              <div class="channel-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L1 7"></path>
+                </svg>
+              </div>
+              <div class="channel-details">
+                <span class="channel-title">Direct Email</span>
+                <span class="channel-val" th:text="${profile.email}">sahilnikam107@gmail.com</span>
+              </div>
+            </a>
+
+            <!-- GitHub -->
+            <a th:href="${profile.github}" target="_blank" rel="noopener noreferrer" class="contact-channel-item"
+              aria-label="GitHub Profile">
+              <div class="channel-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path
+                    d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4">
+                  </path>
+                  <path d="M9 18c-4.51 2-5-2-7-2"></path>
+                </svg>
+              </div>
+              <div class="channel-details">
+                <span class="channel-title">GitHub</span>
+                <span class="channel-val">SahilSatishNikam</span>
+              </div>
+            </a>
+
+            <!-- LinkedIn -->
+            <a th:href="${profile.linkedin}" target="_blank" rel="noopener noreferrer" class="contact-channel-item"
+              aria-label="LinkedIn Profile">
+              <div class="channel-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                  <rect x="2" y="9" width="4" height="12"></rect>
+                  <circle cx="4" cy="4" r="2"></circle>
+                </svg>
+              </div>
+              <div class="channel-details">
+                <span class="channel-title">LinkedIn</span>
+                <span class="channel-val">sahil-nikam</span>
+              </div>
+            </a>
+
+            <!-- Organization Badge -->
+            <div class="contact-channel-item">
+              <div class="channel-icon" style="background: rgba(139, 92, 246, 0.1); color: var(--accent-violet);">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+              </div>
+              <div class="channel-details">
+                <span class="channel-title">Current Role</span>
+                <span class="channel-val">CodeMetric • India</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Working Contact Form -->
+        <div class="glass-card contact-form-card reveal-init">
+          <form id="contact-form" class="contact-form" novalidate>
+            <!-- Honeypot Bot Trap (invisible to humans) -->
+            <div class="hp-field" aria-hidden="true">
+              <label for="contact-company-hp">Company URL</label>
+              <input type="text" id="contact-company-hp" name="companyUrl" tabindex="-1" autocomplete="off">
+            </div>
+
+            <!-- Name -->
+            <div class="form-group">
+              <label for="contact-name" class="form-label">Your Name *</label>
+              <input type="text" id="contact-name" class="form-input" placeholder="e.g. Alex Morgan" required
+                autocomplete="name">
+              <span id="contact-name-error" class="form-field-error" aria-live="polite"></span>
+            </div>
+
+            <!-- Email -->
+            <div class="form-group">
+              <label for="contact-email" class="form-label">Email Address *</label>
+              <input type="email" id="contact-email" class="form-input" placeholder="alex@company.com" required
+                autocomplete="email">
+              <span id="contact-email-error" class="form-field-error" aria-live="polite"></span>
+            </div>
+
+            <!-- Subject -->
+            <div class="form-group">
+              <label for="contact-subject" class="form-label">Subject *</label>
+              <input type="text" id="contact-subject" class="form-input"
+                placeholder="Engineering opportunity or technical discussion" required>
+              <span id="contact-subject-error" class="form-field-error" aria-live="polite"></span>
+            </div>
+
+            <!-- Message -->
+            <div class="form-group">
+              <label for="contact-message" class="form-label">Message *</label>
+              <textarea id="contact-message" class="form-textarea"
+                placeholder="Hello Sahil, I saw your portfolio and would like to connect regarding..."
+                required></textarea>
+              <span id="contact-message-error" class="form-field-error" aria-live="polite"></span>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" id="contact-submit-btn" class="btn btn-primary btn-submit">
+              <span class="spinner" aria-hidden="true"></span>
+              <span class="btn-text">SEND MESSAGE</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+            </button>
+          </form>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 </body>
+
 </html>

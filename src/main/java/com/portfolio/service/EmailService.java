@@ -23,7 +23,7 @@ public class EmailService {
     @Value("${spring.mail.username:}")
     private String mailUsername;
 
-    @Value("${portfolio.mail.to:sahilnikam005@gmail.com}")
+    @Value("${portfolio.mail.to:sahilnikam107@gmail.com}")
     private String recipientEmail;
 
     @Value("${portfolio.mail.enabled:true}")
