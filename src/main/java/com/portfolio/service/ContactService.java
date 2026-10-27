@@ -16,10 +16,12 @@ public class ContactService {
 
     private final ContactMessageRepository repository;
     private final RateLimiterService rateLimiterService;
+    private final EmailService emailService;
 
-    public ContactService(ContactMessageRepository repository, RateLimiterService rateLimiterService) {
+    public ContactService(ContactMessageRepository repository, RateLimiterService rateLimiterService, EmailService emailService) {
         this.repository = repository;
         this.rateLimiterService = rateLimiterService;
+        this.emailService = emailService;
     }
 
     /**
@@ -60,6 +62,13 @@ public class ContactService {
 
         repository.save(messageEntity);
         log.info("Secure contact message persisted from: <{}> (IP: {})", sanitizedEmail, clientIp);
+
+        // 5. Send notification email to portfolio owner
+        try {
+            emailService.sendContactNotification(sanitizedName, sanitizedEmail, sanitizedSubject, sanitizedMessage, clientIp);
+        } catch (Exception e) {
+            log.error("Failed to dispatch email notification: {}", e.getMessage());
+        }
 
         return true;
     }
