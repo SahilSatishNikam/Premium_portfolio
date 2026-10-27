@@ -10,6 +10,9 @@
   document.addEventListener('DOMContentLoaded', function () {
     initNavigation();
     initScrollSpy();
+    initScrollProgress();
+    initCursorGlow();
+    initCard3DTilt();
     initTerminalSimulation();
     initBackToTop();
     initSectionRouter();
@@ -188,7 +191,108 @@
   }
 
   /* ==========================================================================
-     5. SECTION ROUTER & AUTO-SCROLL
+     5. SCROLL READING PROGRESS BAR
+     ========================================================================== */
+  function initScrollProgress() {
+    const bar = document.getElementById('scroll-progress');
+    if (!bar) return;
+
+    function update() {
+      const scrollY = window.scrollY || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const progress = height > 0 ? (scrollY / height) * 100 : 0;
+      bar.style.width = Math.min(Math.max(progress, 0), 100) + '%';
+    }
+
+    window.addEventListener('scroll', update, { passive: true });
+    update();
+  }
+
+  /* ==========================================================================
+     6. AMBIENT CURSOR SPOTLIGHT GLOW
+     ========================================================================== */
+  function initCursorGlow() {
+    const glow = document.getElementById('cursor-glow');
+    if (!glow || window.matchMedia('(hover: none) or (pointer: coarse)').matches) return;
+
+    let targetX = -500;
+    let targetY = -500;
+    let currentX = -500;
+    let currentY = -500;
+    let isMoving = false;
+
+    window.addEventListener('mousemove', function (e) {
+      targetX = e.clientX;
+      targetY = e.clientY;
+      if (!isMoving) {
+        isMoving = true;
+        glow.style.opacity = '1';
+        requestAnimationFrame(renderGlow);
+      }
+    }, { passive: true });
+
+    document.addEventListener('mouseleave', function () {
+      glow.style.opacity = '0';
+    });
+
+    function renderGlow() {
+      currentX += (targetX - currentX) * 0.15;
+      currentY += (targetY - currentY) * 0.15;
+      glow.style.left = currentX + 'px';
+      glow.style.top = currentY + 'px';
+
+      if (Math.abs(targetX - currentX) > 0.2 || Math.abs(targetY - currentY) > 0.2) {
+        requestAnimationFrame(renderGlow);
+      } else {
+        isMoving = false;
+      }
+    }
+  }
+
+  /* ==========================================================================
+     7. 3D CARD PERSPECTIVE TILT & SPECULAR REFLECTION
+     ========================================================================== */
+  function initCard3DTilt() {
+    if (window.matchMedia('(hover: none) or (pointer: coarse)').matches) return;
+
+    const cards = document.querySelectorAll(
+      '.project-card, .skill-category-card, .credential-card, .approach-card, .about-card, .timeline-card, .feature-box, .tilt-card'
+    );
+
+    cards.forEach(card => {
+      card.classList.add('tilt-card');
+
+      card.addEventListener('mousemove', function (e) {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        const rotateX = ((y - centerY) / centerY) * -6;
+        const rotateY = ((x - centerX) / centerX) * 6;
+
+        card.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateY(-5px)`;
+        card.style.setProperty('--tilt-x', `${x}px`);
+        card.style.setProperty('--tilt-y', `${y}px`);
+      });
+
+      card.addEventListener('mouseleave', function () {
+        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+        card.style.transition = 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
+        setTimeout(() => {
+          card.style.transition = '';
+        }, 500);
+      });
+
+      card.addEventListener('mouseenter', function () {
+        card.style.transition = 'none';
+      });
+    });
+  }
+
+  /* ==========================================================================
+     8. SECTION ROUTER & AUTO-SCROLL
      ========================================================================== */
   function initSectionRouter() {
     let sectionId = window.location.hash ? window.location.hash.substring(1) : '';

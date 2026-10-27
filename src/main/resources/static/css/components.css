@@ -1507,32 +1507,102 @@
   transition: color var(--transition-fast);
 }
 
+/* Button Component */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  padding: 0.9rem 1.85rem;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+  position: relative;
+  overflow: hidden;
+  will-change: transform;
+}
+
+.btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.22), transparent);
+  transform: skewX(-25deg);
+  transition: 0.75s ease;
+}
+
+.btn:hover::after {
+  left: 140%;
+}
+
 .back-to-top-btn:hover {
   color: var(--accent-blue);
 }
 
 /* ==========================================================================
-   12. RESPONSIVE BREAKPOINTS
+   12. COMPREHENSIVE RESPONSIVE BREAKPOINTS (DESKTOP, LAPTOP, TABLET, MOBILE)
    ========================================================================== */
+
+/* Large Laptops & Desktops (max-width: 1280px) */
+@media (max-width: 1280px) {
+  .hero-grid {
+    gap: var(--space-2xl);
+  }
+  .title-main {
+    font-size: clamp(2.4rem, 5vw, 3.8rem);
+  }
+}
+
+/* Laptops & Tablets Landscape (max-width: 1024px) */
 @media (max-width: 1024px) {
   .hero-grid {
     grid-template-columns: 1fr;
     gap: var(--space-2xl);
+    text-align: left;
+  }
+  .hero-content {
+    align-items: flex-start;
+  }
+  .hero-visual-card {
+    max-width: 100%;
+    margin: 0 auto;
+    width: 100%;
   }
   .about-grid {
     grid-template-columns: 1fr;
+    gap: var(--space-2xl);
   }
   .project-card {
     grid-template-columns: 1fr;
   }
+  .project-visual-preview {
+    border-left: none;
+    border-top: 1px solid var(--border-subtle);
+  }
   .credentials-grid {
     grid-template-columns: 1fr;
+    gap: var(--space-lg);
   }
   .contact-grid {
     grid-template-columns: 1fr;
+    gap: var(--space-2xl);
+  }
+  .skills-category-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .approach-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
+/* Tablets Portrait & Large Mobiles (max-width: 768px) */
 @media (max-width: 768px) {
   .nav-menu, .nav-status {
     display: none;
@@ -1541,23 +1611,121 @@
     display: flex;
   }
   .section {
-    padding-block: var(--space-3xl);
+    padding: 70px 0;
+  }
+  .hero-section {
+    padding-top: calc(var(--nav-height) + var(--space-lg));
+    padding-bottom: var(--space-2xl);
+    min-height: auto;
+  }
+  .title-small {
+    font-size: 1.1rem;
+  }
+  .title-main {
+    font-size: clamp(2.2rem, 8vw, 3.2rem);
   }
   .hero-actions {
     flex-direction: column;
     width: 100%;
+    gap: var(--space-sm);
   }
   .hero-actions .btn {
     width: 100%;
+    min-height: 48px;
   }
   .about-features {
     grid-template-columns: 1fr;
   }
+  .skills-category-grid {
+    grid-template-columns: 1fr;
+  }
+  .approach-grid {
+    grid-template-columns: 1fr;
+  }
   .timeline-container::before {
-    left: 20px;
+    left: 18px;
+  }
+  .timeline-item {
+    padding-left: 54px;
   }
   .timeline-marker {
-    width: 42px;
-    height: 42px;
+    width: 36px;
+    height: 36px;
+    left: 0;
+    top: 4px;
+  }
+  .project-details {
+    padding: var(--space-xl);
+  }
+  .project-title {
+    font-size: 1.5rem;
+  }
+  .project-actions {
+    flex-direction: column;
+  }
+  .project-actions .btn,
+  .project-actions .project-link-btn {
+    width: 100%;
+    justify-content: center;
+  }
+  .footer-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-xl);
+  }
+  .footer-nav-list {
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+  .footer-bottom {
+    flex-direction: column;
+    gap: var(--space-sm);
+    text-align: left;
+  }
+  .dedicated-page-header {
+    padding-top: calc(var(--nav-height) + var(--space-lg));
+    padding-bottom: var(--space-lg);
+  }
+}
+
+/* Small Mobiles & Narrow Devices (max-width: 480px) */
+@media (max-width: 480px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .title-main {
+    font-size: 2.1rem;
+    letter-spacing: -0.02em;
+  }
+  .hero-role-badge {
+    font-size: 0.72rem;
+    padding: 0.35rem 0.75rem;
+    flex-wrap: wrap;
+  }
+  .terminal-header {
+    padding: 0.65rem 0.85rem;
+  }
+  .terminal-title {
+    display: none;
+  }
+  .terminal-body {
+    padding: 0.85rem;
+    font-size: 0.72rem;
+    max-height: 280px;
+  }
+  .contact-form-card,
+  .credential-card,
+  .skill-category-card,
+  .approach-card {
+    padding: var(--space-lg);
+  }
+  .form-input,
+  .form-textarea {
+    font-size: 16px !important; /* Prevents auto-zoom on iOS safari */
+  }
+  .back-to-top-btn {
+    width: 100%;
+    justify-content: center;
   }
 }

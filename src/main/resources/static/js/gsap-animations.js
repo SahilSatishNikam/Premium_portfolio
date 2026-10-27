@@ -153,7 +153,25 @@
           delay: (idx % 3) * 0.12,
           ease: 'power3.out'
         });
-      // 7. Refresh ScrollTrigger when images & fonts are fully loaded
+      });
+
+      // 7. Foundational Credentials Cards
+      gsap.utils.toArray('.credential-card').forEach((card, idx) => {
+        gsap.from(card, {
+          scrollTrigger: {
+            trigger: card,
+            start: 'top 88%',
+            toggleActions: 'play none none none'
+          },
+          opacity: 0,
+          y: 35,
+          duration: 0.75,
+          delay: idx * 0.15,
+          ease: 'power3.out'
+        });
+      });
+
+      // 8. Refresh ScrollTrigger when images & fonts are fully loaded
       window.addEventListener('load', function () {
         ScrollTrigger.refresh();
       });

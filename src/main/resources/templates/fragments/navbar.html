@@ -3,6 +3,12 @@
 <head><title>Navbar Fragment</title></head>
 <body>
 <nav id="site-nav" class="site-nav" th:fragment="navbar" aria-label="Main Navigation">
+  <!-- Top Reading Progress Indicator -->
+  <div id="scroll-progress" class="scroll-progress-bar" aria-hidden="true"></div>
+
+  <!-- Ambient Cursor Glow Spotlight -->
+  <div id="cursor-glow" class="cursor-glow" aria-hidden="true"></div>
+
   <div class="container container-wide nav-container">
     <!-- Brand Monogram -->
     <a href="#hero" class="brand-link" aria-label="Sahil Nikam Portfolio Home">
