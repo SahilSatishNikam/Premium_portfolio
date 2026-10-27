@@ -12,6 +12,7 @@
     initScrollSpy();
     initTerminalSimulation();
     initBackToTop();
+    initSectionRouter();
   });
 
   /* ==========================================================================
@@ -23,6 +24,25 @@
     const drawer = document.getElementById('mobile-drawer');
     const overlay = document.getElementById('mobile-drawer-overlay');
     const mobileLinks = document.querySelectorAll('.mobile-menu-list a');
+
+    // Smooth anchor navigation
+    document.querySelectorAll('a[href^="#"], a[href^="/#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        const hashIdx = href.indexOf('#');
+        if (hashIdx === -1) return;
+        const targetId = href.substring(hashIdx + 1);
+        if (!targetId) return;
+        const targetElement = document.getElementById(targetId);
+        if (targetElement) {
+          e.preventDefault();
+          targetElement.scrollIntoView({ behavior: 'smooth' });
+          if (history.pushState) {
+            history.pushState(null, null, '/#' + targetId);
+          }
+        }
+      });
+    });
 
     // Sticky nav on scroll
     window.addEventListener('scroll', function () {
@@ -91,7 +111,8 @@
 
         if (scrollPos >= top && scrollPos < top + height) {
           navLinks.forEach(link => {
-            if (link.getAttribute('href') === `#${id}`) {
+            const href = link.getAttribute('href');
+            if (href === `#${id}` || href === `/#${id}`) {
               link.classList.add('active');
             } else {
               link.classList.remove('active');
@@ -163,6 +184,28 @@
           behavior: 'smooth'
         });
       });
+    }
+  }
+
+  /* ==========================================================================
+     5. SECTION ROUTER & AUTO-SCROLL
+     ========================================================================== */
+  function initSectionRouter() {
+    let sectionId = window.location.hash ? window.location.hash.substring(1) : '';
+    if (!sectionId) {
+      const cleanPath = window.location.pathname.replace(/^\/|\/$/g, '');
+      if (cleanPath && cleanPath !== 'home') {
+        sectionId = cleanPath;
+      }
+    }
+
+    if (sectionId) {
+      const targetElement = document.getElementById(sectionId);
+      if (targetElement) {
+        setTimeout(function () {
+          targetElement.scrollIntoView({ behavior: 'smooth' });
+        }, 350);
+      }
     }
   }
 })();

@@ -14,14 +14,29 @@ public class HomeController {
         this.portfolioDataService = portfolioDataService;
     }
 
-    @GetMapping("/")
-    public String index(Model model) {
+    private void populateModel(Model model) {
         model.addAttribute("profile", portfolioDataService.getProfileData());
         model.addAttribute("projects", portfolioDataService.getProjects());
         model.addAttribute("skillsByCategory", portfolioDataService.getSkillsByCategory());
         model.addAttribute("experiences", portfolioDataService.getExperience());
         model.addAttribute("approaches", portfolioDataService.getDevelopmentApproach());
         model.addAttribute("eduCert", portfolioDataService.getEducationAndCertification());
+    }
+
+    @GetMapping({"/", "/home"})
+    public String index(Model model) {
+        populateModel(model);
+        return "index";
+    }
+
+    @GetMapping({"/about", "/skills", "/projects", "/experience", "/approach", "/education", "/contact"})
+    public String sectionRoute(jakarta.servlet.http.HttpServletRequest request, Model model) {
+        populateModel(model);
+        String path = request.getRequestURI();
+        if (path.startsWith("/")) {
+            path = path.substring(1);
+        }
+        model.addAttribute("activeSection", path);
         return "index";
     }
 }

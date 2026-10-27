@@ -1,5 +1,6 @@
 package com.portfolio.exception;
 
+import com.portfolio.controller.ContactApiController;
 import com.portfolio.dto.ApiResponse;
 import com.portfolio.service.ContactService.RateLimitExceededException;
 import org.slf4j.Logger;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.stream.Collectors;
 
-@RestControllerAdvice
+@RestControllerAdvice(assignableTypes = {ContactApiController.class})
 public class GlobalExceptionHandler {
 
     private static final Logger log = LoggerFactory.getLogger(GlobalExceptionHandler.class);

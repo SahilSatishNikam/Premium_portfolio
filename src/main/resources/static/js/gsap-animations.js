@@ -153,10 +153,14 @@
           delay: (idx % 3) * 0.12,
           ease: 'power3.out'
         });
+      // 7. Refresh ScrollTrigger when images & fonts are fully loaded
+      window.addEventListener('load', function () {
+        ScrollTrigger.refresh();
       });
+    }
 
-    } else {
-      // Robust Fallback using native IntersectionObserver
+    // Always run native IntersectionObserver to ensure .reveal-active is applied
+    if ('IntersectionObserver' in window) {
       const observer = new IntersectionObserver(
         entries => {
           entries.forEach(entry => {
@@ -166,11 +170,15 @@
             }
           });
         },
-        { threshold: 0.15 }
+        { threshold: 0.05, rootMargin: '0px 0px 50px 0px' }
       );
 
       document.querySelectorAll('.reveal-init').forEach(el => {
         observer.observe(el);
+      });
+    } else {
+      document.querySelectorAll('.reveal-init').forEach(el => {
+        el.classList.add('reveal-active');
       });
     }
   }
