@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>Skills Fragment</title></head>
+<body>
+<section id="skills" class="section" th:fragment="skills" aria-label="Technical Skills Section">
+  <div class="container">
+    <div class="section-header reveal-init">
+      <span class="section-label">02 / CORE CAPABILITIES</span>
+      <h2 class="section-title">TECHNICAL <span class="text-gradient">TOOLKIT.</span></h2>
+      <p class="section-subtitle">
+        Technologies, frameworks, and methodologies I actively use to construct robust, maintainable backend applications.
+      </p>
+    </div>
+
+    <div class="skills-container">
+      <div class="skills-category-grid">
+        <!-- Iterate dynamically over categories from PortfolioDataService -->
+        <div th:each="entry : ${skillsByCategory}" class="glass-card skill-category-card reveal-init">
+          <div class="skill-category-header">
+            <h3 class="skill-category-title">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                <polyline points="2 17 12 22 22 17"></polyline>
+                <polyline points="2 12 12 17 22 12"></polyline>
+              </svg>
+              <span th:text="${entry.key}">Category Name</span>
+            </h3>
+            <span class="skill-count-badge" th:text="${#lists.size(entry.value)} + ' skills'">8 skills</span>
+          </div>
+
+          <div class="skill-badge-cloud">
+            <span th:each="skill : ${entry.value}" class="skill-chip">
+              <span class="skill-dot" aria-hidden="true"></span>
+              <span th:text="${skill}">Skill</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</body>
+</html>

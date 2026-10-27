@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>Footer Fragment</title></head>
+<body>
+<footer class="site-footer" th:fragment="footer" aria-label="Site Footer">
+  <div class="container container-wide">
+    <div class="footer-top">
+      <!-- Monogram and Identity -->
+      <a href="#hero" class="brand-link" aria-label="Return to Top">
+        <div class="brand-monogram">SN</div>
+        <div class="brand-title">
+          <span class="brand-name" th:text="${profile.name}">Sahil Nikam</span>
+          <span class="brand-role-mini">SOFTWARE DEVELOPER</span>
+        </div>
+      </a>
+
+      <!-- Quick Nav Links -->
+      <ul class="footer-nav-list" aria-label="Footer Navigation">
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#approach">Approach</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+
+      <!-- Back to Top Button -->
+      <button id="back-to-top-btn" class="back-to-top-btn" aria-label="Back to top of page">
+        <span>BACK TO TOP</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="12" y1="19" x2="12" y2="5"></line>
+          <polyline points="5 12 12 5 19 12"></polyline>
+        </svg>
+      </button>
+    </div>
+
+    <div class="footer-bottom">
+      <p>
+        © <span th:text="${#temporals.format(#temporals.createNow(), 'yyyy')}">2026</span> Sahil Nikam. Built with Java 21, Spring Boot 3 & Three.js.
+      </p>
+      <p style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted);">
+        Software Developer Intern @ CodeMetric
+      </p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

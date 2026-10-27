@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>About Fragment</title></head>
+<body>
+<section id="about" class="section" th:fragment="about" aria-label="About Me Section">
+  <div class="container">
+    <div class="section-header reveal-init">
+      <span class="section-label">01 / BACKGROUND & IDENTITY</span>
+      <h2 class="section-title">ENGINEERING WITH <span class="text-gradient">PURPOSE.</span></h2>
+      <p class="section-subtitle">
+        Building practical backend software through systematic reasoning, curiosity, and continuous learning.
+      </p>
+    </div>
+
+    <div class="about-grid">
+      <!-- Left Editorial Story -->
+      <div class="about-editorial reveal-init">
+        <p class="about-lead">
+          I am Sahil Nikam, currently working as a <strong style="color: var(--text-primary);">Software Developer Intern at CodeMetric</strong>. My journey centers on turning software concepts into dependable, real-world applications using Java and the Spring Boot ecosystem.
+        </p>
+
+        <div class="about-details">
+          <p>
+            My passion lies in backend engineering, understanding relational data persistence, designing clean RESTful API contracts, and writing software that is structured, readable, and easy to maintain over time.
+          </p>
+          <p>
+            With a solid foundational background completing a <strong>Bachelor of Computer Science (BCS)</strong> from Karmaveer Bhaurao Patil College (Shivaji University, Kolhapur), I value deep understanding over quick hacks—learning how frameworks operate beneath the abstraction layer.
+          </p>
+        </div>
+
+        <!-- Highlights Grid -->
+        <div class="about-features">
+          <div class="feature-box">
+            <h4>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+                <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+                <line x1="6" y1="6" x2="6.01" y2="6"></line>
+                <line x1="6" y1="18" x2="6.01" y2="18"></line>
+              </svg>
+              <span>Backend Architecture</span>
+            </h4>
+            <p>Layered Spring Boot applications built with clean Controller, Service, and Repository separation.</p>
+          </div>
+
+          <div class="feature-box">
+            <h4>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+                <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+              </svg>
+              <span>Relational Persistence</span>
+            </h4>
+            <p>Practical database modeling with MySQL, Hibernate ORM, and Spring Data JPA transactions.</p>
+          </div>
+
+          <div class="feature-box">
+            <h4>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="16 18 22 12 16 6"></polyline>
+                <polyline points="8 6 2 12 8 18"></polyline>
+              </svg>
+              <span>API Design & Testing</span>
+            </h4>
+            <p>Standardized REST endpoints with thorough Postman validation and robust error handling.</p>
+          </div>
+
+          <div class="feature-box">
+            <h4>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+              </svg>
+              <span>Continuous Growth</span>
+            </h4>
+            <p>Growing engineering skills every day through real problem-solving, documentation, and version control.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Profile Card -->
+      <div class="glass-card about-card reveal-init">
+        <h3 style="margin-bottom: var(--space-sm);">Developer Profile</h3>
+        <p style="font-size: 0.95rem; color: var(--text-secondary); margin-bottom: var(--space-md);">
+          Verified professional identity and educational credentials.
+        </p>
+
+        <ul class="profile-meta-list">
+          <li class="profile-meta-item">
+            <span class="meta-label">Current Role</span>
+            <span class="meta-value" th:text="${profile.role}">Software Developer Intern @ CodeMetric</span>
+          </li>
+          <li class="profile-meta-item">
+            <span class="meta-label">Degree</span>
+            <span class="meta-value" th:text="${eduCert.education.degree}">Bachelor of Computer Science (BCS)</span>
+          </li>
+          <li class="profile-meta-item">
+            <span class="meta-label">College</span>
+            <span class="meta-value" th:text="${eduCert.education.college}">Karmaveer Bhaurao Patil College, Urun-Ishwarpur</span>
+          </li>
+          <li class="profile-meta-item">
+            <span class="meta-label">University</span>
+            <span class="meta-value" th:text="${eduCert.education.university}">Shivaji University, Kolhapur</span>
+          </li>
+          <li class="profile-meta-item">
+            <span class="meta-label">Core Stack</span>
+            <span class="meta-value">Java, Spring Boot, MySQL, REST APIs</span>
+          </li>
+          <li class="profile-meta-item">
+            <span class="meta-label">Location</span>
+            <span class="meta-value">Maharashtra, India</span>
+          </li>
+        </ul>
+
+        <div style="margin-top: var(--space-sm);">
+          <a href="#contact" class="btn btn-secondary" style="width: 100%;">
+            <span>DISCUSS AN OPPORTUNITY</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</body>
+</html>

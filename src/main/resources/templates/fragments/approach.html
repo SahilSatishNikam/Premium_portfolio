@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>Approach Fragment</title></head>
+<body>
+<section id="approach" class="section" th:fragment="approach" aria-label="Development Approach Section">
+  <div class="container">
+    <div class="section-header reveal-init">
+      <span class="section-label">05 / ENGINEERING DISCIPLINE</span>
+      <h2 class="section-title">DEVELOPMENT <span class="text-gradient">APPROACH.</span></h2>
+      <p class="section-subtitle">
+        How I approach problems methodically—ensuring software is well-designed, strictly validated, and built to scale cleanly.
+      </p>
+    </div>
+
+    <div class="approach-grid">
+      <div th:each="step : ${approaches}" class="glass-card approach-card reveal-init">
+        <span class="approach-step-num" th:text="${step.step}">01</span>
+        <h3 class="approach-title" th:text="${step.title}">Understand the Problem</h3>
+        <p class="approach-desc" th:text="${step.description}">Deconstruct the core challenge, user context, and goals.</p>
+      </div>
+    </div>
+  </div>
+</section>
+</body>
+</html>

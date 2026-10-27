@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <!-- Primary SEO Meta Tags -->
+  <title>Sahil Nikam | Software Developer Intern @ CodeMetric</title>
+  <meta name="title" content="Sahil Nikam | Software Developer Intern @ CodeMetric">
+  <meta name="description" content="Portfolio of Sahil Nikam, Software Developer Intern at CodeMetric. Practical backend engineering, Spring Boot architectures, relational persistence, and clean RESTful API design.">
+  <meta name="author" content="Sahil Nikam">
+  <meta name="keywords" content="Sahil Nikam, Software Developer, CodeMetric, Java, Spring Boot, Backend Developer, Spring Data JPA, Hibernate, MySQL, REST API">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://github.com/SahilSatishNikam">
+  <meta property="og:title" content="Sahil Nikam | Software Developer Intern @ CodeMetric">
+  <meta property="og:description" content="Turning ideas into practical software through curiosity, problem-solving, and continuous improvement.">
+  <meta property="og:image" content="/images/favicon.svg">
+
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Sahil Nikam | Software Developer Intern @ CodeMetric">
+  <meta name="twitter:description" content="Turning ideas into practical software through curiosity, problem-solving, and continuous improvement.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" th:href="@{/images/favicon.svg}">
+
+  <!-- Preconnect to Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" th:href="@{/css/design-system.css}">
+  <link rel="stylesheet" th:href="@{/css/components.css}">
+  <link rel="stylesheet" th:href="@{/css/animations.css}">
+</head>
+<body>
+
+  <!-- 1. Sticky Navigation Bar Fragment -->
+  <div th:replace="~{fragments/navbar :: navbar}"></div>
+
+  <!-- Main Landmark -->
+  <main id="main-content">
+    <!-- 2. Hero Section Fragment -->
+    <div th:replace="~{fragments/hero :: hero}"></div>
+
+    <!-- 3. About Me Fragment -->
+    <div th:replace="~{fragments/about :: about}"></div>
+
+    <!-- 4. Technical Skills Fragment -->
+    <div th:replace="~{fragments/skills :: skills}"></div>
+
+    <!-- 5. Featured Projects Fragment -->
+    <div th:replace="~{fragments/projects :: projects}"></div>
+
+    <!-- 6. Professional Experience Fragment -->
+    <div th:replace="~{fragments/experience :: experience}"></div>
+
+    <!-- 7. Development Approach Fragment -->
+    <div th:replace="~{fragments/approach :: approach}"></div>
+
+    <!-- 8. Foundational Credentials Fragment -->
+    <div th:replace="~{fragments/education :: education}"></div>
+
+    <!-- 9. Contact Section Fragment -->
+    <div th:replace="~{fragments/contact :: contact}"></div>
+  </main>
+
+  <!-- 10. Site Footer Fragment -->
+  <div th:replace="~{fragments/footer :: footer}"></div>
+
+  <!-- Global Toast Notification Container -->
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+  <!-- External Visual Libraries (CDN with graceful fallback) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- Application Logic & Visual Scripts -->
+  <script th:src="@{/js/three-scene.js}"></script>
+  <script th:src="@{/js/gsap-animations.js}"></script>
+  <script th:src="@{/js/contact-form.js}"></script>
+  <script th:src="@{/js/main.js}"></script>
+</body>
+</html>

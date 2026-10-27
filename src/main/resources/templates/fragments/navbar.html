@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>Navbar Fragment</title></head>
+<body>
+<nav id="site-nav" class="site-nav" th:fragment="navbar" aria-label="Main Navigation">
+  <div class="container container-wide nav-container">
+    <!-- Brand Monogram -->
+    <a href="#hero" class="brand-link" aria-label="Sahil Nikam Portfolio Home">
+      <div class="brand-monogram">SN</div>
+      <div class="brand-title">
+        <span class="brand-name" th:text="${profile.name}">Sahil Nikam</span>
+        <span class="brand-role-mini">SOFTWARE DEVELOPER</span>
+      </div>
+    </a>
+
+    <!-- Desktop Navigation Links -->
+    <ul class="nav-menu" role="menubar">
+      <li class="nav-item" role="none"><a href="#hero" role="menuitem" class="active">Home</a></li>
+      <li class="nav-item" role="none"><a href="#about" role="menuitem">About</a></li>
+      <li class="nav-item" role="none"><a href="#skills" role="menuitem">Skills</a></li>
+      <li class="nav-item" role="none"><a href="#projects" role="menuitem">Projects</a></li>
+      <li class="nav-item" role="none"><a href="#experience" role="menuitem">Experience</a></li>
+      <li class="nav-item" role="none"><a href="#approach" role="menuitem">Approach</a></li>
+      <li class="nav-item" role="none"><a href="#contact" role="menuitem">Contact</a></li>
+    </ul>
+
+    <!-- Status Badge -->
+    <div class="nav-status">
+      <span class="pulse-dot" aria-hidden="true"></span>
+      <span>CodeMetric Intern</span>
+    </div>
+
+    <!-- Mobile Menu Toggle Button -->
+    <button id="mobile-toggle" class="mobile-toggle" aria-label="Toggle Navigation Menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+
+  <!-- Mobile Drawer Overlay & Menu -->
+  <div id="mobile-drawer-overlay" class="mobile-drawer-overlay" aria-hidden="true"></div>
+  <aside id="mobile-drawer" class="mobile-drawer" aria-label="Mobile Navigation Drawer">
+    <div class="mobile-drawer-header">
+      <div class="brand-link">
+        <div class="brand-monogram">SN</div>
+        <span class="brand-name" th:text="${profile.name}">Sahil Nikam</span>
+      </div>
+    </div>
+    <ul class="mobile-menu-list">
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#approach">Approach</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="mobile-drawer-footer">
+      <span class="nav-status">
+        <span class="pulse-dot"></span>
+        <span>CodeMetric Intern</span>
+      </span>
+    </div>
+  </aside>
+</nav>
+</body>
+</html>

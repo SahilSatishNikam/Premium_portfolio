@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>Experience Fragment</title></head>
+<body>
+<section id="experience" class="section" th:fragment="experience" aria-label="Professional Experience Section">
+  <div class="container">
+    <div class="section-header reveal-init">
+      <span class="section-label">04 / CAREER PROGRESSION</span>
+      <h2 class="section-title">PROFESSIONAL <span class="text-gradient">JOURNEY.</span></h2>
+      <p class="section-subtitle">
+        Hands-on engineering roles where I apply technical problem-solving, develop practical software, and collaborate on real workflows.
+      </p>
+    </div>
+
+    <div class="timeline-container">
+      <!-- Iterate through experiences -->
+      <div th:each="exp : ${experiences}" class="timeline-item reveal-init">
+        <!-- Node Marker -->
+        <div class="timeline-marker">
+          <svg th:if="${exp.isCurrent}" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+          </svg>
+          <svg th:unless="${exp.isCurrent}" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+          </svg>
+        </div>
+
+        <!-- Experience Card -->
+        <div class="glass-card timeline-card">
+          <div class="timeline-header">
+            <div>
+              <h3 class="timeline-role-title" th:text="${exp.role}">Software Developer Intern</h3>
+              <span class="timeline-company-name" th:text="${exp.company}">CodeMetric</span>
+              <span style="color: var(--text-muted); margin-inline: 6px;">•</span>
+              <span style="color: var(--text-muted); font-size: 0.9rem;" th:text="${exp.location}">India</span>
+            </div>
+            <span class="timeline-period-badge" th:text="${exp.period}">October 2026 – Present</span>
+          </div>
+
+          <p class="timeline-desc" th:text="${exp.description}">Role description overview</p>
+
+          <ul class="timeline-highlights">
+            <li th:each="h : ${exp.highlights}" th:text="${h}">Highlight point</li>
+          </ul>
+
+          <!-- Technologies tags -->
+          <div class="project-tech-tags" style="margin-top: var(--space-xs);">
+            <span th:each="tech : ${exp.technologies}" class="tech-tag" th:text="${tech}">Java</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>Hero Fragment</title></head>
+<body>
+<section id="hero" class="hero-section" th:fragment="hero" aria-label="Hero Section">
+  <!-- Three.js 3D WebGL Canvas Viewport -->
+  <div id="hero-canvas-container" aria-hidden="true"></div>
+
+  <div class="container container-wide hero-grid">
+    <!-- Left Hero Editorial Content -->
+    <div class="hero-content">
+      <!-- Role Badge -->
+      <div class="hero-badge-wrap">
+        <span class="hero-role-badge">
+          <span th:text="${profile.heroLabel}">SOFTWARE DEVELOPER INTERN</span>
+          <span style="opacity: 0.3;">/</span>
+          <span class="company-highlight">CodeMetric</span>
+        </span>
+      </div>
+
+      <!-- Main Headline -->
+      <div class="hero-title">
+        <span class="title-small" th:text="${profile.heroHeadline}">Building Ideas Into Software.</span>
+        <h1 class="title-main" th:text="${profile.name}">SAHIL NIKAM</h1>
+      </div>
+
+      <!-- Professional Subtitle -->
+      <p class="hero-subtitle" th:text="${profile.heroSubtitle}">Software Developer Intern @ CodeMetric</p>
+
+      <!-- Supporting Statement -->
+      <p class="hero-description" th:text="${profile.supportingText}">
+        I'm a Software Developer Intern at CodeMetric, focused on growing my engineering skills, solving problems, and building practical software solutions.
+      </p>
+
+      <!-- Action Buttons -->
+      <div class="hero-actions">
+        <a href="#projects" class="btn btn-primary">
+          <span>EXPLORE MY WORK</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+        <a href="#contact" class="btn btn-secondary">
+          <span>GET IN TOUCH</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L1 7"></path>
+          </svg>
+        </a>
+      </div>
+
+      <!-- Social Channels -->
+      <div class="hero-socials" aria-label="Social Profiles">
+        <!-- GitHub -->
+        <a th:href="${profile.github}" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub Profile">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
+            <path d="M9 18c-4.51 2-5-2-7-2"></path>
+          </svg>
+        </a>
+
+        <!-- LinkedIn -->
+        <a th:href="${profile.linkedin}" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn Profile">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+            <rect x="2" y="9" width="4" height="12"></rect>
+            <circle cx="4" cy="4" r="2"></circle>
+          </svg>
+        </a>
+
+        <!-- Email Direct -->
+        <a th:href="'mailto:' + ${profile.email}" class="social-link" aria-label="Send Direct Email">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L1 7"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Right Hero Visual Card: Interactive Developer Terminal Simulator -->
+    <div class="hero-visual-card" aria-label="Live Spring Boot Runtime Console">
+      <div class="terminal-header">
+        <div class="terminal-controls">
+          <span class="ctrl-dot red"></span>
+          <span class="ctrl-dot yellow"></span>
+          <span class="ctrl-dot green"></span>
+        </div>
+        <span class="terminal-title">Spring Boot JVM Console - Java 21</span>
+        <span class="terminal-badge">RUNNING</span>
+      </div>
+      <div id="hero-terminal-body" class="terminal-body" aria-live="polite">
+        <!-- Lines populated dynamically by main.js with Spring Boot startup logs -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll Down Indicator -->
+  <div class="scroll-indicator" aria-hidden="true">
+    <div class="scroll-mouse">
+      <div class="scroll-wheel"></div>
+    </div>
+    <span>SCROLL</span>
+  </div>
+</section>
+</body>
+</html>

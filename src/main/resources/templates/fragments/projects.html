@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>Projects Fragment</title></head>
+<body>
+<section id="projects" class="section" th:fragment="projects" aria-label="Featured Projects Section">
+  <div class="container container-wide">
+    <div class="section-header reveal-init">
+      <span class="section-label">03 / PRACTICAL IMPLEMENTATIONS</span>
+      <h2 class="section-title">FEATURED <span class="text-gradient">PROJECTS.</span></h2>
+      <p class="section-subtitle">
+        Real software applications illustrating layered Spring Boot architectures, relational persistence, and clean RESTful API design.
+      </p>
+    </div>
+
+    <div class="projects-grid">
+      <!-- Iterate through projects dynamically -->
+      <article th:each="project : ${projects}" class="project-card reveal-init" th:id="'project-' + ${project.slug}">
+        <!-- Left: Project Details & Specs -->
+        <div class="project-details">
+          <div>
+            <div class="project-meta-top">
+              <span class="project-number" th:text="${project.number}">01</span>
+              <span class="project-category" th:text="${project.category}">APPLICATION</span>
+            </div>
+
+            <h3 class="project-title" th:text="${project.title}">Project Title</h3>
+            <p class="project-summary" th:text="${project.summary}">Project Summary</p>
+
+            <!-- Problem Solved Block -->
+            <div class="project-problem-box">
+              <span class="problem-label">Problem Solved:</span>
+              <p class="problem-text" th:text="${project.problemSolved}">Problem description</p>
+            </div>
+
+            <!-- Key Highlights -->
+            <ul class="project-highlights-list">
+              <li th:each="highlight : ${project.highlights}" th:text="${highlight}">Key implemented feature</li>
+            </ul>
+          </div>
+
+          <div>
+            <!-- Tech Stack Tags -->
+            <div class="project-tech-tags">
+              <span th:each="tech : ${project.stack}" class="tech-tag" th:text="${tech}">Java</span>
+            </div>
+
+            <!-- Action Links -->
+            <div class="project-actions">
+              <a th:href="${project.githubUrl}" target="_blank" rel="noopener noreferrer" class="project-link-btn" aria-label="View Source on GitHub">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
+                  <path d="M9 18c-4.51 2-5-2-7-2"></path>
+                </svg>
+                <span>GitHub Repository</span>
+              </a>
+
+              <span th:if="${project.liveDemoUrl != null and !#strings.isEmpty(project.liveDemoUrl)}">
+                <a th:href="${project.liveDemoUrl}" target="_blank" rel="noopener noreferrer" class="project-link-btn" aria-label="View Live Application Demo">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                    <polyline points="15 3 21 3 21 9"></polyline>
+                    <line x1="10" y1="14" x2="21" y2="3"></line>
+                  </svg>
+                  <span>Live Demo</span>
+                </a>
+              </span>
+
+              <span class="skill-count-badge" style="color: var(--text-muted);" th:text="${project.status}">ACTIVE</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Interactive Code / Architecture Preview Window -->
+        <div class="project-visual-panel">
+          <div class="mockup-window">
+            <div class="mockup-bar">
+              <div class="terminal-controls">
+                <span class="ctrl-dot red"></span>
+                <span class="ctrl-dot yellow"></span>
+                <span class="ctrl-dot green"></span>
+              </div>
+              <span class="mockup-tab-title" th:text="${project.slug} + '.java (REST API Contract)'">Controller.java</span>
+              <span style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent-blue);">REST</span>
+            </div>
+            <pre class="mockup-code-content"><code><span class="code-comment">// Layered Enterprise Architecture</span>
+<span class="code-keyword">@RestController</span>
+<span class="code-keyword">@RequestMapping</span>(<span class="code-str">"/api/v1/" + [[${project.slug}]]</span>)
+<span class="code-keyword">public class</span> <span class="code-class" th:text="${#strings.capitalize(project.slug.replace('-', ''))} + 'Controller'">ProjectController</span> {
+
+    <span class="code-keyword">private final</span> <span class="code-class" th:text="${#strings.capitalize(project.slug.replace('-', ''))} + 'Service'">ProjectService</span> service;
+
+    <span class="code-keyword">public</span> <span class="code-fn" th:text="${#strings.capitalize(project.slug.replace('-', ''))} + 'Controller'">Constructor</span>(<span class="code-class">Service</span> s) {
+        <span class="code-keyword">this</span>.service = s;
+    }
+
+    <span class="code-keyword">@GetMapping</span>(<span class="code-str">"/{id}"</span>)
+    <span class="code-keyword">public</span> <span class="code-class">ResponseEntity</span>&lt;<span class="code-class">ResponseDTO</span>&gt; getById(<span class="code-keyword">@PathVariable</span> Long id) {
+        <span class="code-keyword">return</span> ResponseEntity.ok(service.findById(id));
+    }
+}</code></pre>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+</body>
+</html>

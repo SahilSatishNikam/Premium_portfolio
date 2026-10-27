@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>Education Fragment</title></head>
+<body>
+<section id="education" class="section" th:fragment="education" aria-label="Education and Certifications Section">
+  <div class="container">
+    <div class="section-header reveal-init">
+      <span class="section-label">06 / ACADEMICS & CERTIFICATIONS</span>
+      <h2 class="section-title">FOUNDATIONAL <span class="text-gradient">CREDENTIALS.</span></h2>
+      <p class="section-subtitle">
+        Formal academic degree in computer science complemented by intensive professional backend engineering training.
+      </p>
+    </div>
+
+    <div class="credentials-grid">
+      <!-- 1. Formal Degree Card -->
+      <div class="glass-card credential-card reveal-init">
+        <span class="credential-badge">ACADEMIC DEGREE</span>
+        <h3 class="credential-title" th:text="${eduCert.education.degree}">Bachelor of Computer Science (BCS)</h3>
+        <p class="credential-issuer">
+          <span th:text="${eduCert.education.college}">Karmaveer Bhaurao Patil College, Urun-Ishwarpur</span><br>
+          <span style="font-size: 0.9rem; color: var(--text-muted);" th:text="${eduCert.education.university}">Shivaji University, Kolhapur</span>
+        </p>
+        <p class="credential-desc" th:text="${eduCert.education.description}">
+          Studied fundamental computer science principles including Object-Oriented Programming (OOP), Data Structures and Algorithms, Relational Database Management Systems (RDBMS), Software Engineering, and Web Development.
+        </p>
+      </div>
+
+      <!-- 2. Professional Certification Card -->
+      <div class="glass-card credential-card reveal-init">
+        <span class="credential-badge" style="color: var(--accent-violet);">PROFESSIONAL CERTIFICATION</span>
+        <h3 class="credential-title" th:text="${eduCert.certification.title}">Java Full Stack Development</h3>
+        <p class="credential-issuer" th:text="${eduCert.certification.institution}">Fortune Cloud</p>
+        <p class="credential-desc" th:text="${eduCert.certification.description}">
+          Professional training program focused on practical backend engineering with Core Java, Spring Boot, Spring Data JPA, Hibernate, RESTful Web Services, and MySQL database persistence.
+        </p>
+        <ul class="project-highlights-list" style="margin-top: var(--space-xs);">
+          <li th:each="item : ${eduCert.certification.highlights}" th:text="${item}">Key training area</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+</body>
+</html>
