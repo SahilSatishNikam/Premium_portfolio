@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Featured Projects | Sahil Nikam - Software Developer Intern @ CodeMetric</title>
+  <meta name="description" content="Explore real-world software engineering projects by Sahil Nikam, including Spring Boot architectures, secure RESTful APIs, and relational persistence.">
+  <link rel="icon" type="image/svg+xml" th:href="@{/images/favicon.svg}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" th:href="@{/css/design-system.css(v='1.0.2')}">
+  <link rel="stylesheet" th:href="@{/css/components.css(v='1.0.2')}">
+  <link rel="stylesheet" th:href="@{/css/animations.css(v='1.0.2')}">
+</head>
+<body>
+
+  <!-- Sticky Navigation Bar Fragment -->
+  <div th:replace="~{fragments/navbar :: navbar}"></div>
+
+  <!-- Dedicated Page Header -->
+  <header class="dedicated-page-header">
+    <div class="container container-wide">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+        <a href="/" class="breadcrumb-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+          <span>Full Portfolio Overview</span>
+        </a>
+        <span class="breadcrumb-separator">/</span>
+        <span class="breadcrumb-current">Featured Projects</span>
+      </nav>
+      <h1 class="h1">Featured Projects & Systems</h1>
+      <p class="section-subtitle">
+        Real-world applications built with clean architecture, robust validation, relational persistence, and practical problem-solving.
+      </p>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="dedicated-page-content">
+    <div th:replace="~{fragments/projects :: projects}"></div>
+  </main>
+
+  <!-- Site Footer Fragment -->
+  <div th:replace="~{fragments/footer :: footer}"></div>
+
+  <!-- Global Toast Notification Container -->
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+  <!-- Scripts -->
+  <script th:src="@{/js/contact-form.js(v='1.0.2')}"></script>
+  <script th:src="@{/js/main.js(v='1.0.2')}"></script>
+</body>
+</html>

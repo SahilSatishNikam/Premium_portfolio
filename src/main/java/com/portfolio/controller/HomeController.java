@@ -29,14 +29,39 @@ public class HomeController {
         return "index";
     }
 
-    @GetMapping({"/about", "/skills", "/projects", "/experience", "/approach", "/education", "/contact"})
-    public String sectionRoute(jakarta.servlet.http.HttpServletRequest request, Model model) {
+    @GetMapping("/about")
+    public String about(Model model) {
         populateModel(model);
-        String path = request.getRequestURI();
-        if (path.startsWith("/")) {
-            path = path.substring(1);
-        }
-        model.addAttribute("activeSection", path);
-        return "index";
+        return "about";
+    }
+
+    @GetMapping("/skills")
+    public String skills(Model model) {
+        populateModel(model);
+        return "skills";
+    }
+
+    @GetMapping("/projects")
+    public String projects(Model model) {
+        populateModel(model);
+        return "projects";
+    }
+
+    @GetMapping({"/experience", "/education"})
+    public String experience(Model model) {
+        populateModel(model);
+        return "experience";
+    }
+
+    @GetMapping("/approach")
+    public String approach(Model model) {
+        populateModel(model);
+        return "approach";
+    }
+
+    @GetMapping("/contact")
+    public String contact(Model model) {
+        populateModel(model);
+        return "contact";
     }
 }
